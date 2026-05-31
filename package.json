@@ -1,0 +1,49 @@
+{
+  "name": "@overengineered-solutions/observability",
+  "version": "0.1.0",
+  "description": "Observability doctrine wrappers — Zod-parse, first-call shape, iteration counts, daily smoke. Prevents the silent-zero failure mode.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "import": { "types": "./dist/esm/index.d.ts", "default": "./dist/esm/index.js" },
+      "require": { "types": "./dist/cjs/index.d.ts", "default": "./dist/cjs/index.js" }
+    },
+    "./sinks/memory": {
+      "import": { "types": "./dist/esm/sinks/memory.d.ts", "default": "./dist/esm/sinks/memory.js" },
+      "require": { "types": "./dist/cjs/sinks/memory.d.ts", "default": "./dist/cjs/sinks/memory.js" }
+    }
+  },
+  "files": ["dist", "README.md", "CHANGELOG.md", "LICENSE"],
+  "scripts": {
+    "build": "pnpm run build:esm && pnpm run build:cjs && node scripts/post-build.mjs",
+    "build:esm": "tsc -p tsconfig.json",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "clean": "rm -rf dist tsconfig.tsbuildinfo tsconfig.cjs.tsbuildinfo",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run",
+    "prepack": "pnpm run clean && pnpm run build",
+    "prepublishOnly": "pnpm run clean && pnpm run build"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public",
+    "provenance": true
+  },
+  "repository": { "type": "git", "url": "git+https://github.com/overengineered-solutions/observability.git" },
+  "homepage": "https://github.com/overengineered-solutions/observability#readme",
+  "bugs": { "url": "https://github.com/overengineered-solutions/observability/issues" },
+  "keywords": ["observability", "zod", "audit", "oes"],
+  "peerDependencies": { "zod": ">=3.22.0" },
+  "peerDependenciesMeta": { "zod": { "optional": false } },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0",
+    "zod": "^3.25.76"
+  }
+}
