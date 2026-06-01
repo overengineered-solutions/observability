@@ -14,6 +14,7 @@ export type {
   ApiShapeMismatchEvent,
   IterationCountEvent,
   ShapeObservedEvent,
+  ApiTimingEvent,
   ObservabilityEvent,
   EventSink,
 } from './types.js';

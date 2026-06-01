@@ -1,6 +1,6 @@
 {
   "name": "@overengineered-solutions/observability",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Observability doctrine wrappers — Zod-parse, first-call shape, iteration counts, daily smoke. Prevents the silent-zero failure mode.",
   "license": "MIT",
   "type": "module",

@@ -7,6 +7,10 @@ export type ObserveFirstCallShapeOptions = {
   endpoint: string;
   payload: unknown;
   sink?: EventSink;
+  /** Optional attribution — upstream client/connection identifier. */
+  client?: string;
+  /** Optional attribution — tenant the call is made on behalf of. */
+  tenantId?: string;
 };
 
 /**
@@ -31,6 +35,8 @@ export function observeFirstCallShape(opts: ObserveFirstCallShapeOptions): void 
     topLevelKeys,
     arrayLengths,
     occurredAt: new Date().toISOString(),
+    client: opts.client,
+    tenantId: opts.tenantId,
   };
   try {
     opts.sink?.emit(event);

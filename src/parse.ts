@@ -6,6 +6,10 @@ export type ParseExternalOptions = {
   integration: string;
   endpoint: string;
   sink?: EventSink;
+  /** Optional attribution — upstream client/connection identifier. */
+  client?: string;
+  /** Optional attribution — tenant the call is made on behalf of. */
+  tenantId?: string;
 };
 
 /**
@@ -35,6 +39,8 @@ export function parseExternal<T>(
       message: i.message,
     })),
     occurredAt: new Date().toISOString(),
+    client: opts.client,
+    tenantId: opts.tenantId,
   };
   try {
     opts.sink?.emit(event);
