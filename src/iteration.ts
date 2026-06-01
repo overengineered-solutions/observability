@@ -5,6 +5,10 @@ export type LogIterationOptions = {
   processed: number;
   expected: number;
   sink?: EventSink;
+  /** Optional attribution — upstream client/connection identifier. */
+  client?: string;
+  /** Optional attribution — tenant the call is made on behalf of. */
+  tenantId?: string;
 };
 
 /**
@@ -23,6 +27,8 @@ export function logIteration(opts: LogIterationOptions): void {
     expected: opts.expected,
     severity: silentZero ? 'warn' : 'info',
     occurredAt: new Date().toISOString(),
+    client: opts.client,
+    tenantId: opts.tenantId,
   };
   try {
     opts.sink?.emit(event);
