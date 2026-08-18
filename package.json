@@ -1,7 +1,7 @@
 {
   "name": "@overengineered-solutions/observability",
-  "version": "0.2.0",
-  "description": "Observability doctrine wrappers — Zod-parse, first-call shape, iteration counts, daily smoke. Prevents the silent-zero failure mode.",
+  "version": "0.3.0",
+  "description": "Observability doctrine wrappers \u2014 Zod-parse, first-call shape, iteration counts, daily smoke. Prevents the silent-zero failure mode.",
   "license": "MIT",
   "type": "module",
   "main": "./dist/cjs/index.js",
@@ -9,15 +9,42 @@
   "types": "./dist/esm/index.d.ts",
   "exports": {
     ".": {
-      "import": { "types": "./dist/esm/index.d.ts", "default": "./dist/esm/index.js" },
-      "require": { "types": "./dist/cjs/index.d.ts", "default": "./dist/cjs/index.js" }
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
     },
     "./sinks/memory": {
-      "import": { "types": "./dist/esm/sinks/memory.d.ts", "default": "./dist/esm/sinks/memory.js" },
-      "require": { "types": "./dist/cjs/sinks/memory.d.ts", "default": "./dist/cjs/sinks/memory.js" }
+      "import": {
+        "types": "./dist/esm/sinks/memory.d.ts",
+        "default": "./dist/esm/sinks/memory.js"
+      },
+      "require": {
+        "types": "./dist/cjs/sinks/memory.d.ts",
+        "default": "./dist/cjs/sinks/memory.js"
+      }
+    },
+    "./shapes": {
+      "import": {
+        "types": "./dist/esm/shapes/index.d.ts",
+        "default": "./dist/esm/shapes/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/shapes/index.d.ts",
+        "default": "./dist/cjs/shapes/index.js"
+      }
     }
   },
-  "files": ["dist", "README.md", "CHANGELOG.md", "LICENSE"],
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "pnpm run build:esm && pnpm run build:cjs && node scripts/post-build.mjs",
     "build:esm": "tsc -p tsconfig.json",
@@ -33,12 +60,28 @@
     "access": "public",
     "provenance": true
   },
-  "repository": { "type": "git", "url": "git+https://github.com/overengineered-solutions/observability.git" },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/overengineered-solutions/observability.git"
+  },
   "homepage": "https://github.com/overengineered-solutions/observability#readme",
-  "bugs": { "url": "https://github.com/overengineered-solutions/observability/issues" },
-  "keywords": ["observability", "zod", "audit", "oes"],
-  "peerDependencies": { "zod": ">=3.22.0" },
-  "peerDependenciesMeta": { "zod": { "optional": false } },
+  "bugs": {
+    "url": "https://github.com/overengineered-solutions/observability/issues"
+  },
+  "keywords": [
+    "observability",
+    "zod",
+    "audit",
+    "oes"
+  ],
+  "peerDependencies": {
+    "zod": ">=3.22.0"
+  },
+  "peerDependenciesMeta": {
+    "zod": {
+      "optional": false
+    }
+  },
   "dependencies": {},
   "devDependencies": {
     "@types/node": "^22.10.0",
