@@ -1,0 +1,126 @@
+{
+  "name": "@overengineered-solutions/observability",
+  "version": "0.1.0",
+  "description": "Observability doctrine wrappers — Zod-parse, first-call shape, iteration counts, daily smoke. Prevents the silent-zero failure mode.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
+    },
+    "./shapes/cloudflare": {
+      "import": {
+        "types": "./dist/esm/shapes/cloudflare.d.ts",
+        "default": "./dist/esm/shapes/cloudflare.js"
+      },
+      "require": {
+        "types": "./dist/cjs/shapes/cloudflare.d.ts",
+        "default": "./dist/cjs/shapes/cloudflare.js"
+      }
+    },
+    "./shapes/github": {
+      "import": {
+        "types": "./dist/esm/shapes/github.d.ts",
+        "default": "./dist/esm/shapes/github.js"
+      },
+      "require": {
+        "types": "./dist/cjs/shapes/github.d.ts",
+        "default": "./dist/cjs/shapes/github.js"
+      }
+    },
+    "./shapes/resend": {
+      "import": {
+        "types": "./dist/esm/shapes/resend.d.ts",
+        "default": "./dist/esm/shapes/resend.js"
+      },
+      "require": {
+        "types": "./dist/cjs/shapes/resend.d.ts",
+        "default": "./dist/cjs/shapes/resend.js"
+      }
+    },
+    "./shapes/supabase-mgmt": {
+      "import": {
+        "types": "./dist/esm/shapes/supabase-mgmt.d.ts",
+        "default": "./dist/esm/shapes/supabase-mgmt.js"
+      },
+      "require": {
+        "types": "./dist/cjs/shapes/supabase-mgmt.d.ts",
+        "default": "./dist/cjs/shapes/supabase-mgmt.js"
+      }
+    },
+    "./shapes/vercel": {
+      "import": {
+        "types": "./dist/esm/shapes/vercel.d.ts",
+        "default": "./dist/esm/shapes/vercel.js"
+      },
+      "require": {
+        "types": "./dist/cjs/shapes/vercel.d.ts",
+        "default": "./dist/cjs/shapes/vercel.js"
+      }
+    },
+    "./sinks/memory": {
+      "import": {
+        "types": "./dist/esm/sinks/memory.d.ts",
+        "default": "./dist/esm/sinks/memory.js"
+      },
+      "require": {
+        "types": "./dist/cjs/sinks/memory.d.ts",
+        "default": "./dist/cjs/sinks/memory.js"
+      }
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "pnpm run build:esm && pnpm run build:cjs && node scripts/post-build.mjs",
+    "build:esm": "tsc -p tsconfig.json",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "clean": "rm -rf dist tsconfig.tsbuildinfo tsconfig.cjs.tsbuildinfo",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run",
+    "prepack": "pnpm run clean && pnpm run build",
+    "prepublishOnly": "pnpm run clean && pnpm run build"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public",
+    "provenance": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/overengineered-solutions/observability.git"
+  },
+  "homepage": "https://github.com/overengineered-solutions/observability#readme",
+  "bugs": {
+    "url": "https://github.com/overengineered-solutions/observability/issues"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "zod": ">=3.22.0"
+  },
+  "peerDependenciesMeta": {
+    "zod": {
+      "optional": false
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0",
+    "zod": "^3.25.76"
+  }
+}
