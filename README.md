@@ -111,6 +111,23 @@ to a tenant / upstream connection. Omitting them is fully backward-compatible.
 
 Provide your own sink (any object with `emit(event)`) to forward observability events into your audit log / Sentry / supabase outbox / etc. The sink receives any `ObservabilityEvent` — `api_shape_mismatch`, `iteration_count`, `shape_observed`, or `api_timing`. A tiny `createMemorySink()` factory is exported under `@overengineered-solutions/observability/sinks/memory` for tests.
 
+## Response shapes — `/shapes`
+
+Ready-made Zod schemas for the external APIs this estate still calls, exported from a subpath so `zod` stays
+out of the main entry's runtime graph (the entry treats it as a type-only peer). Feed them to `parseExternal`
+/ `parseJsonResponse`:
+
+```ts
+import { parseJsonResponse } from '@overengineered-solutions/observability';
+import { EmailSendResponseSchema, ZonesListResponseSchema } from '@overengineered-solutions/observability/shapes';
+
+const { id } = await parseJsonResponse(res, EmailSendResponseSchema, { integration: 'resend', endpoint: '/emails' });
+```
+
+Exported: `EmailSendResponseSchema` (Resend `POST /emails`); `CloudflareZoneSchema`, `CloudflareDnsRecordSchema`,
+`CloudflareVerifyTokenSchema`, `ZonesListResponseSchema` (Cloudflare API v4). Vercel / Supabase-mgmt / GitHub
+shapes were intentionally not carried over — the estate exited those vendors.
+
 ## License
 
 MIT

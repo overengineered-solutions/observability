@@ -1,4 +1,5 @@
 v0.3.0 — 2026-08-18 — `./shapes` subpath: Cloudflare + Resend response schemas. Additive.
+  - (review pass, same day) README documents the `./shapes` subpath; per-schema tests added (24 total) with fixtures captured from the live Cloudflare v4 + Resend APIs; schemas verified as a deliberate minimal subset against real responses (`.passthrough()` tolerates the ~20 unlisted fields).
   - New `@overengineered-solutions/observability/shapes` entry point exporting `CloudflareZoneSchema`, `CloudflareDnsRecordSchema`, `CloudflareVerifyTokenSchema`, `ZonesListResponseSchema` and `EmailSendResponseSchema`, for use as the `schema` argument to `parseExternal` / `parseJsonResponse`.
   - Salvaged from a v0.1.0 working copy found untracked in the `ui` repo — a second, divergent master of this package. That copy has been deleted; this repo is the only one.
   - Its Vercel / Supabase-mgmt / GitHub shapes were deliberately NOT salvaged: the estate exited those vendors, and a schema for an API nobody calls is upkeep that reads as coverage.
